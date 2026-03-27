@@ -2,7 +2,8 @@ import { Geist, Geist_Mono, Roboto, Noto_Serif } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
+import { Navbar } from "@/components/navbar"
 
 const notoSerifHeading = Noto_Serif({subsets:['latin'],variable:'--font-heading'});
 
@@ -25,7 +26,10 @@ export default function RootLayout({
       className={cn("antialiased", fontMono.variable, "font-sans", roboto.variable, notoSerifHeading.variable)}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <Navbar />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
