@@ -1,9 +1,10 @@
-import { Geist, Geist_Mono, Roboto, Noto_Serif } from "next/font/google"
+import { ClerkProvider } from "@clerk/nextjs"
+import { Geist_Mono, Roboto, Noto_Serif } from "next/font/google"
 
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
-import { Navbar } from "@/components/navbar"
+import { Navbar } from "@/components/navbar/navbar"
 
 const notoSerifHeading = Noto_Serif({subsets:['latin'],variable:'--font-heading'});
 
@@ -26,10 +27,14 @@ export default function RootLayout({
       className={cn("antialiased", fontMono.variable, "font-sans", roboto.variable, notoSerifHeading.variable)}
     >
       <body>
-        <ThemeProvider>
-          <Navbar />
-          {children}
-        </ThemeProvider>
+        <ClerkProvider>
+          <ThemeProvider>
+            <header>
+              <Navbar />
+            </header>
+            {children}
+          </ThemeProvider>
+        </ClerkProvider>
       </body>
     </html>
   )
